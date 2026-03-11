@@ -1,10 +1,4 @@
 FROM alpine:3.19
-
-# Expose a port (optional, for mapping)
-# EXPOSE 80
-#
-# # Print Hello World once (optional)
-# RUN echo "Hello World from Docker container!"
-#
-# # Keep container running indefinitely
-# CMD ["sh", "-c", "while true; do sleep 3600; done"]'
+RUN apk add --no-cache busybox-extras
+EXPOSE 80
+CMD sh -c 'while true; do echo -e "HTTP/1.1 200 OK\r\n\r\nHello World from Docker container!" | nc -l -p 80; done'

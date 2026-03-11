@@ -1,0 +1,6 @@
+FROM nginx:latest
+
+# Copy your website files into Nginx's default directory
+COPY ./html /usr/share/nginx/html
+
+EXPOSE 80

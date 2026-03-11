@@ -1,2 +1,10 @@
 FROM alpine:3.19
-CMD echo "Hello World from Docker container!"
+
+# Install a small web server tool
+RUN apk add --no-cache busybox-extras
+
+# Expose web port
+EXPOSE 80
+
+# Start a simple HTTP server returning Hello World
+CMD sh -c "while true; do echo -e 'HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\n\r\nHello World from Docker container!' | nc -l -p 80; done""
